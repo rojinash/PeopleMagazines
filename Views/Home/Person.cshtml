@@ -1,0 +1,27 @@
+@model ManyToMany.Models.Subscription
+<a href = '/'>Back</a>
+<h1 style = 'margin-bottom: 20px'>@ViewBag.person.Name</h1>
+<div style = 'display: inline-block; width: 300px; vertical-align: top'>
+    <h3>Magazines:</h3>
+    <ul>
+        @{
+            foreach(Subscription magazine in ViewBag.person.Subscriptions) {
+                <li>@magazine.Magazine.Title</li>
+            }
+        }
+    </ul>
+</div>
+<div style = 'display: inline-block; width: 300px; vertical-align: top'>
+    <h3>Add Product: </h3>
+    <form action = '/add/magazine' method="post"> 
+        <input type='hidden' value='@ViewBag.person.PersonId' asp-for="PersonId">
+        <select asp-for="MagazineId">
+            @{
+                foreach(Magazine magazine in ViewBag.magazines) {
+                    <option value=@magazine.MagazineId>@magazine.Title</option>
+                }
+            }
+        </select>
+        <input type="submit" value="Submit" class = 'btn btn-primary'>
+    </form>
+</div>

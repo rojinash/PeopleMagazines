@@ -1,0 +1,24 @@
+@model ManyToMany.Models.Magazine
+<div style = 'width: 100%;'>
+    <p style = 'display:inline'>Magazines | </p>
+    <a href = '/people'>People</a>
+</div>
+<div style = 'display: inline-block; width: 40%; padding: 20px; vertical-align: top'>
+    <h1>New Magazine</h1>
+    <form asp-action="CreateMagazine" asp-controller="Home" method="post">
+        <span asp-validation-for="Title"></span>
+        <p></p>
+        <label asp-for="Title"></label>
+        <input type="text" asp-for="Title">
+        <p></p>
+        <input type="submit" value="Create" class = 'btn btn-primary'>
+    </form>
+</div>
+<div style = 'display: inline-block; width: 40%; padding: 20px; vertical-align: top'>
+    <h1>Existing Magazines</h1>
+    @{
+        foreach(Magazine magazine in ViewBag.magazines) {
+            <a style = 'display: block' href = '/magazines/@magazine.MagazineId'>@magazine.Title</a>
+        }
+    }
+</div>

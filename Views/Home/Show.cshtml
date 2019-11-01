@@ -1,0 +1,6 @@
+@model Person
+<h1>Subscriptions for @Model.Name</h1>
+@foreach(var sub in Model.Subscriptions)
+{
+    <p>@sub.Magazine.Title</p>
+}

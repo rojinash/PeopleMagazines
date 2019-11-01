@@ -1,0 +1,24 @@
+@model ManyToMany.Models.Person
+<div style = 'width: 100%;'>
+    <a href = '/'>Magazines</a>
+    <p style = 'display:inline'> | People</p>
+</div>
+<div style = 'display: inline-block; width: 40%; padding: 20px; vertical-align: top'>
+    <h1>New Person</h1>
+    <form asp-action="CreatePerson" asp-controller="Home" method="post">
+        <span asp-validation-for="Name"></span>
+        <p></p>
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name">
+        <p></p>
+        <input type="submit" value="Create" class = 'btn btn-primary'>
+    </form>
+</div>
+<div style = 'display: inline-block; width: 40%; padding: 20px; vertical-align: top'>
+    <h1>Existing People</h1>
+    @{
+        foreach(Person person in ViewBag.people) {
+            <a style = 'display: block' href = '/people/@person.PersonId'>@person.Name</a>
+        }
+    }
+</div>
